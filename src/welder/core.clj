@@ -3,7 +3,7 @@
 
 (def word-list (string/split (slurp "resources/welder-word-list.txt") #"\n"))
 
-(def gold-tiles ["p" "s" "l" "e"])
+(def gold-tiles ["p" "m" "r" "n"])
 
 (defn in? 
   "true if seq contains element"
@@ -14,7 +14,9 @@
   (let [letters (string/split word #"")]
     (every? #(true? %) (map #(in? letters %) gold-tiles))))
 
-(def golden-words (filter is-gold? word-list))
+(defn golden-words []
+  (filter is-gold? word-list))
 
-(def lengthwise (reverse (sort-by count golden-words)))
+(defn lengthwise []
+  (reverse (sort-by count (golden-words))))
 

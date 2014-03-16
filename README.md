@@ -5,8 +5,9 @@ W.E.L.D.E.R.
 
 ## Usage
 
-Mega primitive right now. Define `gold-tiles` in `core.clj` and start it up in
-the REPL. Get your best options by doing something like `(take 20 lengthwise)`.
+Start it up in the REPL. If you have "a," "b," and "c" as your gold tiles,
+`(def gold-tiles ["a" "b" "c"])`. You get the idea. Get your best options by
+doing something like `(take 20 lengthwise)`.
 
 Best strategy I've found for W.E.L.D.E.R. is to make mega-high-scoring words
 with as many gold/diamond/etc tiles as possible, so this gives you the longest
