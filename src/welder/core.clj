@@ -20,3 +20,19 @@
 (defn lengthwise []
   (reverse (sort-by count (golden-words))))
 
+; FIXME: dry (partial? composition?)
+(defn ending-in [substring]
+  (filter #(re-find (re-pattern (str substring "$")) %) (golden-words)))
+
+(defn starting-with [substring]
+  (filter #(re-find (re-pattern (str "^" substring)) %) (golden-words)))
+
+(defn containing [substring]
+  (filter #(re-find (re-pattern substring) %) (golden-words)))
+
+; todo
+;   search entire word list for particular string
+;   determine if word contains substrings which are also in the word list
+; fixme
+;   entering "r" twice does not give you words with two Rs in them
+
