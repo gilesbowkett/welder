@@ -35,4 +35,5 @@
 ;   determine if word contains substrings which are also in the word list
 ; fixme
 ;   entering "r" twice does not give you words with two Rs in them
-
+;     this got me the subset with two Ls
+;     (filter (fn [word] (re-find #"l.*l" word)) (golden-words))
