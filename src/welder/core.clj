@@ -3,6 +3,8 @@
 
 (def word-list (string/split (slurp "resources/welder-word-list.txt") #"\n"))
 
+; usage; define this var with your tiles, then call something
+; like (take 10 (lengthwise))
 (def gold-tiles ["p" "m" "r" "n"])
 
 (defn in? 
@@ -30,10 +32,21 @@
 (defn containing [substring]
   (filter #(re-find (re-pattern substring) %) (golden-words)))
 
+; determine if word contains substrings which are also in the word list
+(defn sub-words [word]
+  (vec (filter (fn [subword]
+                   (and (< 3 (.length subword))
+                        (not (= word subword))))
+               (for [start (range 0 5), end (range 4 9)] (subs word start end)))))
+
+(defn risks [word]
+  (filter (fn [sub-word] (in? word-list sub-word)) (sub-words word)))
+
 ; todo
 ;   search entire word list for particular string
-;   determine if word contains substrings which are also in the word list
+
 ; fixme
 ;   entering "r" twice does not give you words with two Rs in them
 ;     this got me the subset with two Ls
 ;     (filter (fn [word] (re-find #"l.*l" word)) (golden-words))
+

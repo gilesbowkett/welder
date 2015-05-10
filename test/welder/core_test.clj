@@ -1,7 +1,24 @@
 (ns welder.core-test
-  (:require [clojure.test :refer :all]
-            [welder.core :refer :all]))
+  (:use midje.sweet)
+  (:use [welder.core]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(facts "about finding sub-words"
+  (fact "(sub-words) finds all possible sub-words"
+    (sub-words "monocarp") => ["mono",
+                               "monoc",
+                               "monoca",
+                               "monocar",
+                               "onoc",
+                               "onoca",
+                               "onocar",
+                               "onocarp",
+                               "noca",
+                               "nocar",
+                               "nocarp",
+                               "ocar",
+                               "ocarp",
+                               "carp"])
+
+  (fact "(risks) tells you which sub-words are actually in the word list"
+    (risks "monocarp") => ["mono", "carp"]))
+
