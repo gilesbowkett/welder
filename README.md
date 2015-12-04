@@ -6,7 +6,7 @@ A Clojure library which gives you high-scoring words for the iOS game WELDER.
 
 Start it up in the REPL. If you have "a," "b," and "c" as your gold tiles,
 `(def gold-tiles ["a" "b" "c"])`. You get the idea. Get your best options by
-doing something like `(take 20 lengthwise)`.
+doing something like `(take 20 (lengthwise))`.
 
 The best strategy I've found for WELDER is to make mega-high-scoring words
 with as many gold/diamond/etc tiles as possible, so this gives you the longest
