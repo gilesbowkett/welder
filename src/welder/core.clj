@@ -22,15 +22,17 @@
 (defn lengthwise []
   (reverse (sort-by count (golden-words))))
 
-; FIXME: dry (partial? composition?)
+(defn substring-shit [pattern-shit]
+  (filter #(re-find pattern-shit %) (golden-words)))
+
 (defn ending-in [substring]
-  (filter #(re-find (re-pattern (str substring "$")) %) (golden-words)))
+  (substring-shit (re-pattern (str substring "$"))))
 
 (defn starting-with [substring]
-  (filter #(re-find (re-pattern (str "^" substring)) %) (golden-words)))
+  (substring-shit (re-pattern (str "^" substring))))
 
 (defn containing [substring]
-  (filter #(re-find (re-pattern substring) %) (golden-words)))
+  (substring-shit (re-pattern substring)))
 
 ; determine if word contains substrings which are also in the word list
 (defn sub-words [word]
