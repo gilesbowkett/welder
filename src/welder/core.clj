@@ -23,16 +23,16 @@
   (reverse (sort-by count (golden-words))))
 
 (defn substring-shit [pattern-shit]
-  (filter #(re-find pattern-shit %) (golden-words)))
+  (filter #(re-find (re-pattern pattern-shit) %) (golden-words)))
 
 (defn ending-in [substring]
-  (substring-shit (re-pattern (str substring "$"))))
+  (substring-shit (str substring "$")))
 
 (defn starting-with [substring]
-  (substring-shit (re-pattern (str "^" substring))))
+  (substring-shit (str "^" substring)))
 
 (defn containing [substring]
-  (substring-shit (re-pattern substring)))
+  (substring-shit substring))
 
 ; determine if word contains substrings which are also in the word list
 (defn sub-words [word]
