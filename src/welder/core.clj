@@ -1,7 +1,7 @@
 (ns welder.core
   (:require [clojure.string :as string]))
 
-(def word-list (string/split (slurp "resources/welder-word-list.txt") #"\n"))
+(def word-list (string/split-lines (slurp "resources/welder-word-list.txt")))
 
 ; usage; define this var with your tiles, then call something
 ; like (take 10 (lengthwise))
@@ -10,7 +10,8 @@
 (defn in? 
   "true if seq contains element"
   [seq element]  
-  (some #(= element %) seq))
+  (boolean (some #(= element %) seq)))
+  ; upgrade to some? when upgrading to latest clojure!
 
 (defn is-gold? [word]
   (let [letters (string/split word #"")]
