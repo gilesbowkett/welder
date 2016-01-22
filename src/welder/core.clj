@@ -23,17 +23,17 @@
 (defn lengthwise []
   (reverse (sort-by count (golden-words))))
 
-(defn substring-shit [pattern-shit]
+(defn find-sub [pattern-shit]
   (filter #(re-find (re-pattern pattern-shit) %) (golden-words)))
 
 (defn ending-in [substring]
-  (substring-shit (str substring "$")))
+  (find-sub (str substring "$")))
 
 (defn starting-with [substring]
-  (substring-shit (str "^" substring)))
+  (find-sub (str "^" substring)))
 
 (defn containing [substring]
-  (substring-shit substring))
+  (find-sub substring))
 
 ; determine if word contains substrings which are also in the word list
 (defn sub-words [word]
@@ -44,9 +44,6 @@
 
 (defn risks [word]
   (filter (fn [sub-word] (in? word-list sub-word)) (sub-words word)))
-
-; todo
-;   search entire word list for particular string
 
 ; fixme
 ;   entering "r" twice does not give you words with two Rs in them
