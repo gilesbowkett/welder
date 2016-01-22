@@ -23,8 +23,8 @@
 (defn lengthwise []
   (reverse (sort-by count (golden-words))))
 
-(defn find-sub [pattern-shit]
-  (filter #(re-find (re-pattern pattern-shit) %) (golden-words)))
+(defn find-sub [pattern]
+  (filter #(re-find (re-pattern pattern) %) (golden-words)))
 
 (defn ending-in [substring]
   (find-sub (str substring "$")))
